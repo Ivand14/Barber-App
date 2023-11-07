@@ -70,7 +70,7 @@ const Singup = () => {
                     display: 'flex',
                     flexDirection:'column',
                     alignItems: 'center',
-                    width: '100%',
+                    width: '100vw',
                     maxWidth: '600px', // Ajusta el ancho máximo del formulario
                     marginLeft: { xs: 0, md: '93px' }, // Espacio entre la imagen y el formulario
                     justifyContent:'center',
@@ -82,7 +82,7 @@ const Singup = () => {
                 <form
                 onSubmit={handleSubmit}
                 style={{
-                    width: '70%',
+                    width: '100%',
                     padding: '2rem',
                     borderRadius: '2rem ',
                 }}

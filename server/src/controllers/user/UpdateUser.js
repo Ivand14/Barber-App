@@ -11,7 +11,8 @@ const updateUser = async({id,name,email,password}) =>{
         })
 
         return{
-            message: 'Usuario actualizado'
+            message: 'Usuario actualizado',
+            findId
         }
     }
 
