@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import singup from '../../Redux/action/Singup/singupAction';
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from 'react-router-dom';
+import loginAction from '../../Redux/action/Login/loginAction';
+import { toast, ToastContainer } from 'react-toastify';
+
 
 const Login = () => {
     const [form, setForm] = useState({
@@ -16,7 +19,7 @@ const Login = () => {
 
     const dispatch = useDispatch();
 
-    const User = useSelector(state => state.userSignin);
+    const userLogin = useSelector(state => state.login);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -29,7 +32,7 @@ const Login = () => {
         setError(validateErrors);
 
         if (Object.keys(validateErrors).length === 0) {
-            dispatch(singup(form));
+            dispatch(loginAction(form.email,form.password));
             setForm({
                 email:'',
                 password:''
@@ -37,7 +40,9 @@ const Login = () => {
         }
     };
 
-    console.log('first',User)
+    const userExist = () => {
+        if(!userLogin.verified) toast.warning("El usuario no se encontro o no esta verificado")
+    }
 
     return (
         <Box
@@ -49,6 +54,18 @@ const Login = () => {
                 backgroundColor:'#0C356A'
             }}
         >
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
             <Box
                 sx={{
                     display: 'flex',
@@ -103,9 +120,16 @@ const Login = () => {
                             {error.password && <Typography sx={{color:'black',textAlign:'center',mt:1,backgroundColor:'red',borderRadius:1,p:1,fontSize:18}}>{error.password}</Typography>}
                     </Box>
 
-                    <Button variant="contained" type="submit" fullWidth>
-                        Registrarse
-                    </Button>
+                    {userLogin.verified ? 
+                        <Link to={'/home'}>
+                            <Button variant="contained" type="submit" fullWidth>
+                            INICIAR SESIÓN
+                            </Button>
+                        </Link>:
+                        <Button variant="contained" onClick={userExist} type="submit" fullWidth>
+                            INICIAR SESIÓN
+                        </Button>
+                    }
                 </FormControl>
                 <Box sx={{alignItems:'start',textAlign:'start',mt:5,display:'flex',justifyContent:'space-between'}}>
                     <Box>

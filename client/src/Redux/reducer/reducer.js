@@ -1,7 +1,9 @@
 import { SING_UP } from "../../Redux/action/Singup/singupAction"
+import { LOGIN } from '../action/Login/loginAction';
 
 const initialState = {
     userSignin:[],
+    login:[]
 }
 
 const rootReducer = (state = initialState,action) => {
@@ -11,6 +13,12 @@ const rootReducer = (state = initialState,action) => {
                 ...state,
                 userSignin:action.payload
             }
+        case LOGIN:{
+            return{
+                ...state,
+                login:action.payload
+            }
+        }
             default: return state
         }
 }
