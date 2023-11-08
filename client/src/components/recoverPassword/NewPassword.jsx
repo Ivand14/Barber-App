@@ -107,7 +107,7 @@ const NewPassword = () => {
                     </Box>
 
                     <Button variant="contained" type="submit" fullWidth>
-                        ENVIAR INSTRUCCIONES
+                        RECUPERAR CONTRASEÑA
                     </Button>
                 </FormControl>
                 <Box sx={{alignItems:'start',textAlign:'start',mt:5,display:'flex',justifyContent:'space-between'}}>

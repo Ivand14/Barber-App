@@ -1,10 +1,11 @@
 import { SING_UP } from "../../Redux/action/Singup/singupAction"
 import { LOGIN } from '../action/Login/loginAction';
 import { RECOVER_PASS } from '../action/newPassword/passRecover';
+import { ERROR_LOGIN, VERIFY_LOGIN } from '../action/Login/verifyLoginAction';
 
 const initialState = {
     userSignin:[],
-    login:[]
+    login:[],
 }
 
 const rootReducer = (state = initialState,action) => {
@@ -32,6 +33,12 @@ const rootReducer = (state = initialState,action) => {
                     }
                     return user
                 })
+            }
+        }
+        case VERIFY_LOGIN:{
+            return{
+                ...state,
+                login:action.payload
             }
         }
             default: return state

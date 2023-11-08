@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import validate from './validate';
 import { Box, FormControl, TextField, Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import singup from '../../Redux/action/Singup/singupAction';
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import loginAction from '../../Redux/action/Login/loginAction';
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -19,6 +19,8 @@ const Login = () => {
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate()
+
     const userLogin = useSelector(state => state.login);
 
     const handleChange = (event) => {
@@ -31,18 +33,38 @@ const Login = () => {
         const validateErrors = validate(form);
         setError(validateErrors);
 
-        if (Object.keys(validateErrors).length === 0) {
-            dispatch(loginAction(form.email,form.password));
-            setForm({
-                email:'',
-                password:''
-            });
+        if(!userLogin){
+            toast.warning('Usuario no encontrado')
+        }
+
+        console.log(userLogin)
+
+        if(!userLogin.verified ){
+            toast.warning('Usuario no verificado')
+        }
+
+        try {
+            if (Object.keys(validateErrors).length === 0) {
+                dispatch(loginAction(form.email,form.password));
+                setForm({
+                    email:'',
+                    password:''
+                });
+            }
+        } catch (error) {
+            toast.warning('Usuario no encontrado')
         }
     };
 
-    const userExist = () => {
-        if(!userLogin.verified) toast.warning("El usuario no se encontro o no esta verificado")
-    }
+    console.log(userLogin)
+
+    useEffect(() => {
+        if (userLogin.verified) {
+            navigate('/home');
+        }
+    }, [userLogin, navigate]);
+
+
 
     return (
         <Box
@@ -120,16 +142,9 @@ const Login = () => {
                             {error.password && <Typography sx={{color:'black',textAlign:'center',mt:1,backgroundColor:'red',borderRadius:1,p:1,fontSize:18}}>{error.password}</Typography>}
                     </Box>
 
-                    {userLogin.verified ? 
-                        <Link to={'/home'}>
-                            <Button variant="contained" type="submit" fullWidth>
-                            INICIAR SESIÓN
-                            </Button>
-                        </Link>:
-                        <Button variant="contained" onClick={userExist} type="submit" fullWidth>
-                            INICIAR SESIÓN
-                        </Button>
-                    }
+                    <Button variant="contained" type="submit" fullWidth>
+                        INICIAR SESIÓN
+                    </Button>
                 </FormControl>
                 <Box sx={{alignItems:'start',textAlign:'start',mt:5,display:'flex',justifyContent:'space-between'}}>
                     <Box>

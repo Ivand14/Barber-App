@@ -8,7 +8,6 @@ const loginAction = (email,password) => {
         try {
             const response = await axios.get(`http://localhost:3001/login?email=${email}&password=${password}`)
 
-            console.log(response.data)
 
             dispatch({
                 type: LOGIN,
