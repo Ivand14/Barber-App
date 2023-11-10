@@ -6,7 +6,7 @@ module.exports = sequelize =>{
             type: DataTypes.UUID,
             allowNull:false,
             primaryKey:true,
-            defaultValue: DataTypes.UUID
+            defaultValue: DataTypes.UUIDV4
         },
         date:{
             type: DataTypes.STRING,
@@ -22,8 +22,8 @@ module.exports = sequelize =>{
             defaultValue:false
         },
         cost:{
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull:false
         }
-    })
+    },{timestamps:false})
 }

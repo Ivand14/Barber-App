@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize")
 
 
 module.exports = (sequelize) => {
-    sequelize.defien('shift',{
+    sequelize.define('shift',{
         id:{
             type: DataTypes.UUID,
             allowNull:false,

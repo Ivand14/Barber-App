@@ -6,6 +6,7 @@ const routerTokenVerified = require('./user/verifyTokenRoute')
 const routerGetUser = require('./user/routerGetUser')
 const routerLogin = require('./user/routerLogin')
 const routerRecoverPass = require('./user/routerRecover')
+const postReservation = require('./reservation/postRouteReservation')
 
 const router = Router()
 
@@ -16,5 +17,6 @@ router.use('/',routerTokenVerified)
 router.use('/',routerGetUser)
 router.use('/',routerLogin)
 router.use('/',routerRecoverPass)
+router.use('/',postReservation)
 
 module.exports = router
