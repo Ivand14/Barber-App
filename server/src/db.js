@@ -17,8 +17,8 @@ reservationModel(sequelize)
 
 const {User,Reservation} = sequelize.models
 
-User.belongsTo(Reservation)
-Reservation.hasOne(User)
+User.hasMany(Reservation)
+Reservation.belongsTo(User)
 
 
 

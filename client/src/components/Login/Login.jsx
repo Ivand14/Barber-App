@@ -2,7 +2,6 @@ import React, { useState,useEffect } from 'react';
 import validate from './validate';
 import { Box, FormControl, TextField, Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import singup from '../../Redux/action/Singup/singupAction';
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from 'react-router-dom';
 import loginAction from '../../Redux/action/Login/loginAction';
@@ -33,30 +32,23 @@ const Login = () => {
         const validateErrors = validate(form);
         setError(validateErrors);
 
-        if(!userLogin){
-            toast.warning('Usuario no encontrado')
-        }
-
         console.log(userLogin)
 
-        if(!userLogin.verified ){
-            toast.warning('Usuario no verificado')
-        }
 
-        try {
-            if (Object.keys(validateErrors).length === 0) {
-                dispatch(loginAction(form.email,form.password));
-                setForm({
-                    email:'',
-                    password:''
-                });
+        if (Object.keys(validateErrors).length === 0) {
+            dispatch(loginAction(form.email,form.password));
+            setForm({
+                email:'',
+                password:''
+            });
+
+            if(userLogin.length == 0 && !userLogin.verified ){
+                toast.warning('Usuario no verificado')
             }
-        } catch (error) {
-            toast.warning('Usuario no encontrado')
         }
     };
-
-    console.log(userLogin)
+    
+    localStorage.setItem('verified',JSON.stringify(userLogin.verified))
 
     useEffect(() => {
         if (userLogin.verified) {
