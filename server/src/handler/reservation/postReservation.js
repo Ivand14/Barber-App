@@ -3,12 +3,12 @@ const createReservation = require('../../controllers/reservation/createReservati
 
 const postReservation = async(req,res) => {
 
-    const{date,hour,cost,pay} = req.body
+    const{date,hour,cost,UserId,shiftId} = req.body
 
     try {
         
-        if(!date || !hour || !cost || !pay) return res.status(404).json('Faltan datos')
-        const newReserv = await createReservation({date,hour,cost,pay})
+        if(!date || !hour || !cost  ) return res.status(404).json('Faltan datos')
+        const newReserv = await createReservation({date,hour,cost,UserId,shiftId})
 
         if(!newReserv) return res.status(404).json('Error al crear la reserva')
 

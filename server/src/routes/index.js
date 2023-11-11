@@ -8,6 +8,7 @@ const routerLogin = require('./user/routerLogin')
 const routerRecoverPass = require('./user/routerRecover')
 const postReservation = require('./reservation/postRouteReservation')
 const deleteRoute = require('./reservation/deleteRouteReservation')
+const routerGetReserv = require('./reservation/getRouterReserv')
 
 const router = Router()
 
@@ -20,5 +21,6 @@ router.use('/',routerLogin)
 router.use('/',routerRecoverPass)
 router.use('/',postReservation)
 router.use('/',deleteRoute)
+router.use('/',routerGetReserv)
 
 module.exports = router

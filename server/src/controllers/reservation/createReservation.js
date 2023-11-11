@@ -1,12 +1,13 @@
 const { Reservation } = require("../../db")
 
-const createReservation = async({date,hour,pay,cost}) => {
+const createReservation = async({date,hour,cost,UserId}) => {
 
     const createReserv = await Reservation.findOrCreate({where:{
         date,
         hour,
-        pay,
-        cost
+        cost,
+        UserId,
+        shiftId
     }})
 
     return createReserv
