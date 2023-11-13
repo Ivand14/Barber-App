@@ -3,6 +3,6 @@ const getHandlerReserv = require('../../handler/reservation/getHandlerReserv')
 
 const routerGetReserv = Router()
 
-routerGetReserv.get('/reserv/:id',getHandlerReserv)
+routerGetReserv.get('/reserv/',getHandlerReserv)
 
 module.exports = routerGetReserv

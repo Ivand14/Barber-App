@@ -9,6 +9,7 @@ const routerRecoverPass = require('./user/routerRecover')
 const postReservation = require('./reservation/postRouteReservation')
 const deleteRoute = require('./reservation/deleteRouteReservation')
 const routerGetReserv = require('./reservation/getRouterReserv')
+const routerPostShift = require('./shift/routerPostShift')
 
 const router = Router()
 
@@ -22,5 +23,6 @@ router.use('/',routerRecoverPass)
 router.use('/',postReservation)
 router.use('/',deleteRoute)
 router.use('/',routerGetReserv)
+router.use('/',routerPostShift)
 
 module.exports = router

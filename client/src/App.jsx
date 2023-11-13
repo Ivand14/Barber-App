@@ -23,7 +23,7 @@ function App() {
         <Route path='/login/:token' element={<LoginToken/>} />
         <Route path='/login' element={<Login/>} />
         <Route element={<PrivateRoute isAuthorized={verified}/>}>
-          <Route path='/home' element={<Home/>} />
+          <Route path='/home/:id' element={<Home/>} />
         </Route>
         <Route path='/newPassword/:idUser' element={<NewPassword/>} />
         <Route path='/missPassword' element={<MissPass/>} />
