@@ -1,13 +1,11 @@
-import { Navigate, Outlet } from "react-router-dom"
+import { Navigate, Outlet, useLocation } from "react-router-dom"
 
-const PrivateRoute = ({isAuthorized,redirectPath='/login'}) => {
+const PrivateRoute = ({ children }) => {
 
+    const{state} = useLocation()
 
-    if(!isAuthorized){
-        return <Navigate to={redirectPath} replace />
-    }
+    return state?.logged ? children : <Navigate to={'/login'} />;
+};
 
-    return <Outlet/>
-}
 
 export default PrivateRoute

@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
             allowNull:false
         },
         day:{
-            type: DataTypes.ENUM('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'),
+            type: DataTypes.ENUM('Martes','Miercoles','Jueves','Viernes','Sabado'),
             allowNull:false
         }
     },{timestamps:false})

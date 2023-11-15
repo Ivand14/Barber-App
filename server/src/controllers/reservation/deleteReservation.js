@@ -5,9 +5,10 @@ const deleteController = async({id}) => {
     const findReserv = await Reservation.findOne({where:{id}})
 
     if(findReserv){
-        await findReserv.destroy()
+        const reservDelete = await findReserv.destroy()
         return{
-            message: 'Reserva eliminada'
+            message: 'Reserva eliminada',
+            reservDelete
         }
     }
 

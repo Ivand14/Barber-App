@@ -50,7 +50,7 @@ const Singup = () => {
                 flexDirection:'row-reverse',
                 justifyContent: 'flex-end',
                 alignItems: 'center',
-                backgroundColor:'#0C356A'
+                backgroundColor:'#0F0F0F'
             }}
         >
             <ToastContainer

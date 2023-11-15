@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from 'react-router-dom';
 import loginAction from '../../Redux/action/Login/loginAction';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 
 const Login = () => {
@@ -21,6 +21,8 @@ const Login = () => {
     const navigate = useNavigate()
 
     const userLogin = useSelector(state => state.login);
+    
+
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -32,9 +34,6 @@ const Login = () => {
         const validateErrors = validate(form);
         setError(validateErrors);
 
-        console.log(userLogin)
-
-
         if (Object.keys(validateErrors).length === 0) {
             dispatch(loginAction(form.email,form.password));
             setForm({
@@ -42,19 +41,25 @@ const Login = () => {
                 password:''
             });
 
-            if(userLogin.length == 0 && !userLogin.verified ){
-                toast.warning('Usuario no verificado')
-            }
+            setError({})
         }
     };
     
-    localStorage.setItem('verified',JSON.stringify(userLogin.verified))
+    
+    useEffect(()=>{
+        localStorage.setItem('verified', JSON.stringify(userLogin.verified));
+        localStorage.setItem('userInfo', JSON.stringify(userLogin.userInfo));
+        if(userLogin.verified){
+            const verified = localStorage.getItem('verified')
 
-    useEffect(() => {
-        if (userLogin.verified) {
-            navigate('/home');
+            navigate('/home',{
+                replace:true,
+                state:{
+                    logged:verified
+                }
+            })
         }
-    }, [userLogin, navigate]);
+    },[userLogin.verified])
 
 
 
@@ -65,7 +70,7 @@ const Login = () => {
                 flexDirection:'row-reverse',
                 justifyContent: 'flex-end',
                 alignItems: 'center',
-                backgroundColor:'#0C356A'
+                backgroundColor:'#0F0F0F'
             }}
         >
             <ToastContainer
@@ -134,7 +139,7 @@ const Login = () => {
                             {error.password && <Typography sx={{color:'black',textAlign:'center',mt:1,backgroundColor:'red',borderRadius:1,p:1,fontSize:18}}>{error.password}</Typography>}
                     </Box>
 
-                    <Button variant="contained" type="submit" fullWidth>
+                    <Button variant="contained" type="submit"  fullWidth>
                         INICIAR SESIÓN
                     </Button>
                 </FormControl>

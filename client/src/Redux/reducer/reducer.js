@@ -2,10 +2,16 @@ import { SING_UP } from "../../Redux/action/Singup/singupAction"
 import { LOGIN } from '../action/Login/loginAction';
 import { RECOVER_PASS } from '../action/newPassword/passRecover';
 import { ERROR_LOGIN, VERIFY_LOGIN } from '../action/Login/verifyLoginAction';
+import { DELETE_DATE } from '../action/Reserv/deleteReserv';
+import {NEW_RESERV} from '../action/Reserv/actionPostReserv'
 
 const initialState = {
     userSignin:[],
-    login:[],
+    login:{
+        userInfo:[],
+        verified:null
+    },
+    reservations:[]
 }
 
 const rootReducer = (state = initialState,action) => {
@@ -18,7 +24,10 @@ const rootReducer = (state = initialState,action) => {
         case LOGIN:{
             return{
                 ...state,
-                login:action.payload
+                login:{
+                    userInfo:action.payload.userInfo,
+                    verified:action.payload.verified
+                }
             }
         }
         case RECOVER_PASS:{
@@ -40,6 +49,13 @@ const rootReducer = (state = initialState,action) => {
                 ...state,
                 login:action.payload
             }
+        }
+        case NEW_RESERV:{
+            return{
+                ...state,
+                reservations:action.payload
+            }
+            
         }
             default: return state
         }
