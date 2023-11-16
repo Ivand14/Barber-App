@@ -5,6 +5,7 @@ import { Box,Button, Typography } from '@mui/material';
 import "react-toastify/dist/ReactToastify.css";
 
 import MyDate from '../myDates/MyDate'
+import NewDate from '../NewDate/NewDate';
 
 
 
@@ -64,7 +65,7 @@ const Home = () => {
             }}
         >
             <Box sx={{display:'flex',flexDirection:'column'}}>
-                <Box sx={{display:'flex',alignItems:'start',justifyContent:'space-between',width:'60vw'}}>
+                <Box sx={{display:'flex',alignItems:'start',justifyContent:'space-between',width:'62vw'}}>
                     <Box>
                         <Typography sx={{fontSize:40,color:'white',p:1,fontFamily:'cursive'}}>Luquiando Barber</Typography>
                     </Box>
@@ -76,13 +77,15 @@ const Home = () => {
                             </Button>
                         </Box>
                         <Box>
-                            <Button variant={toggleButton === 'mis citas' ? "contained" : "text"} onClick={()=> handleToggle('mis citas')}>Mis citas</Button>
+                            <Button variant={toggleButton === 'mis citas' ? "contained" : "text"}  onClick={()=> handleToggle('mis citas')}>Mis citas</Button>
 
-                            <Button variant={toggleButton === 'nueva cita' ? "contained" : "text"} onClick={()=> handleToggle('nueva cita')}>Nueva cita</Button>
+                            <Button variant={toggleButton === 'nueva cita' ? "contained" : "text"}  onClick={()=> handleToggle('nueva cita')}>Nueva cita</Button>
                         </Box>
                     </Box>
                 </Box>
-                <Box sx={{mt:5}}>
+                <Box sx={{
+                    mt: 5,
+                }}>
                     {toggleButton === 'mis citas' && (
                         <Box>
                             <Box sx={{p:2}}>
@@ -90,7 +93,28 @@ const Home = () => {
                                 <Typography sx={{color:'white',fontSize:20}}>A continuación podrás administrar tus proximas citas</Typography>
                             </Box>
                             {userData.Reservations && userData.Reservations.length ? (
-                                <Box sx={{p:2}}>
+                                <Box sx={{
+                                        p:2,
+                                        maxHeight: '60vh', 
+                                        overflowY: 'auto',
+                                        '&::-webkit-scrollbar': {
+                                            width: '.5rem',
+                                            height:'1rem'
+                                        },
+                                        '&::-webkit-scrollbar-track': {
+                                            background: '#f1f1f1',
+                                        },
+                                        '&::-webkit-scrollbar-thumb': {
+                                            background: '#888',
+                                            borderRadius: '3rem',
+                                        },
+                                        '&::-webkit-scrollbar-thumb:hover': {
+                                            background: '#555',
+                                        },
+                                        scrollbarWidth: 'thin',
+                                        scrollbarColor: '#888 #f1f1f1',
+                                    }}
+                                >
                                     {userData.Reservations.map((reservation)=>(
                                         <Box key={reservation.id} sx={{mt:2}}>
                                             <MyDate
@@ -113,7 +137,9 @@ const Home = () => {
                 </Box>
                 <Box>
                     {toggleButton === 'nueva cita' && (
-                        <Typography>hola</Typography>
+                        <Box>
+                            <NewDate/>
+                        </Box>
                     )}
                 </Box>
             </Box>
@@ -125,6 +151,7 @@ const Home = () => {
                     style={{
                         width:'35vw',
                         height: '100vh',
+                        maxHeight:'200vh'
                     }}
                 />
             </Box>

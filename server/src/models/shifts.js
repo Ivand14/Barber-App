@@ -20,6 +20,10 @@ module.exports = (sequelize) => {
         day:{
             type: DataTypes.ENUM('Martes','Miercoles','Jueves','Viernes','Sabado'),
             allowNull:false
+        },
+        description:{
+            type: DataTypes.ENUM('Mechas y Reflejos','Globales y Franjas','Corte','Corte y Barba'),
+            allowNull:false
         }
     },{timestamps:false})
 }
