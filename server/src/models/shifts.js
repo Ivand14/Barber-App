@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
             allowNull:false
         },
         hour:{
-            type:DataTypes.ENUM('9','10','11','12','14','15','16','17','18','19','20','21','22'),
+            type:DataTypes.ENUM('9','10','11','12','14','15','16','17','18','19','20','21'),
             allowNull:false
         },
         day:{
