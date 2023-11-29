@@ -1,11 +1,11 @@
 const createShift = require("../../controllers/shift/createShift")
 
 const postShift = async(req,res) =>{
-    const {cost,hour,day} = req.body
+    const {description,cost,hour,day} = req.body
     try {
         
-        if(!cost || !hour || !day ) return res.status(404).json('Faltan datos')
-        const postShift = await createShift({cost,hour,day})
+        if(!description || !cost || !hour || !day ) return res.status(404).json('Faltan datos')
+        const postShift = await createShift({description,cost,hour,day})
 
         if(!postShift) return res.status(404).json('Error al crear el turno')
 

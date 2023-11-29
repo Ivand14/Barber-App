@@ -14,15 +14,15 @@ module.exports = (sequelize) => {
             allowNull:false
         },
         hour:{
-            type:DataTypes.ENUM('9','10','11','12','14','15','16','17','18','19','20','21'),
+            type:DataTypes.ENUM('09:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'),
             allowNull:false
         },
         day:{
-            type: DataTypes.ENUM('Martes','Miercoles','Jueves','Viernes','Sabado'),
+            type: DataTypes.STRING,
             allowNull:false
         },
         description:{
-            type: DataTypes.ENUM('Mechas y Reflejos','Globales y Franjas','Corte','Corte y Barba'),
+            type: DataTypes.STRING,
             allowNull:false
         }
     },{timestamps:false})

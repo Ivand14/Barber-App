@@ -1,8 +1,8 @@
 const { shift } = require("../../db")
 
-const createShift = async({cost,hour,day}) => {
+const createShift = async({description,cost,hour,day}) => {
 
-    const createShift = await shift.findOrCreate({where:{cost,hour,day}})
+    const createShift = await shift.findOrCreate({where:{description,cost,hour,day}})
 
     return createShift
 
